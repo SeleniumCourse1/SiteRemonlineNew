@@ -29,8 +29,8 @@ public class TestNgTestBase {
     @BeforeSuite
     public void initTestSuite() throws IOException {
 
-        //baseUrl = PropertyLoader.loadProperty("site.url");
-        baseUrl = "http://dev.remonline.ru/";
+        baseUrl = PropertyLoader.loadProperty("site.url");
+        //baseUrl = "http://dev.remonline.ru/";
         gridHubUrl = PropertyLoader.loadProperty("grid.url");
         if ("".equals(gridHubUrl)) {
             gridHubUrl = null;

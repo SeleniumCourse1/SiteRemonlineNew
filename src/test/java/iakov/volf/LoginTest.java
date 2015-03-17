@@ -15,7 +15,7 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import java.util.concurrent.TimeUnit;
@@ -28,7 +28,7 @@ public class LoginTest {
     OrdersPage ordersPage;
     HeaderPage headerPage;
 
-    @BeforeClass(alwaysRun = true)
+    @BeforeMethod(alwaysRun = true)
     public void setup() {
         this.driver = new FirefoxDriver();
         wait = new WebDriverWait(driver, 5);
@@ -42,6 +42,7 @@ public class LoginTest {
     public void teardown() {
         this.driver.quit();
     }
+
     @Test
     public void TestLoginSuccess() {
         try {

@@ -35,7 +35,7 @@ public class LoginPage extends Page {
     }
 
     public void openLoginPage() {
-        driver.get(PAGE_URL);
+        driver.get("dev.remonline.ru");
         clickElement(goToLoginButton);
     }
 
