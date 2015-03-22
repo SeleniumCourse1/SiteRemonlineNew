@@ -3,8 +3,14 @@ package iakov.volf;
  * Created by Slava on 1/27/2015.
  */
 
+import iakov.volf.pages.HeaderPage;
+import iakov.volf.pages.OrdersPage;
+import iakov.volf.pages.WriteUsPage;
 import org.openqa.selenium.*;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
@@ -19,27 +25,30 @@ public class WriteUsTest {
     private boolean acceptNextAlert = true;
     private StringBuffer verificationErrors = new StringBuffer();
 
-    @BeforeClass
-    public void setUp() throws Exception {
-        driver = new FirefoxDriver();
-        baseUrl = "http://dev.remonline.ru/";
-        driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+   WriteUsPage writeUsPage;
+    public WebDriverWait wait;
+    @BeforeClass(alwaysRun = true)
+    public void setup() {
+        this.driver = new FirefoxDriver();
+        wait = new WebDriverWait(driver, 5);
+        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+        writeUsPage = PageFactory.initElements(driver, WriteUsPage.class);
+
     }
 
+    @AfterClass(alwaysRun = true)
+    public void teardown() {
+        this.driver.quit();
+    }
     @Test
     public void testWriteUs1() throws Exception {
-        driver.get(baseUrl + "/");
-        driver.findElement(By.cssSelector("span.js-auth-feedback.h-dashed-link")).click();
-        for (int second = 0;; second++) {
-            if (second >= 60) fail("timeout");
-            try { if (isElementPresent(By.cssSelector("div.b-modal > h2.h-ta-c"))) break; } catch (Exception e) {}
-            Thread.sleep(1000);
+        writeUsPage.openWriteToUsPage();
+        writeUsPage.fillTheFields("Slava", "miroxa1979@gmail.com", "Test" );
+        writeUsPage.clickToSummit();
         }
 
-        fillTheFields("Miroslav", "miroxa1979@gmail.com", "Test1");
-        submitText();
-        clickOnPage();
-    }
+
+
 
     private void clickOnPage() {
         driver.findElement(By.cssSelector("div.reveal-modal-bg")).click();
