@@ -14,19 +14,15 @@ import java.io.IOException;
 public class LoginPage extends Page {
 
 
-    @FindBy(id = "l-auth-login")
-    WebElement loginUsernameField;
-    @FindBy(id = "l-auth-pass")
-    WebElement loginPasswordField;
-    @FindBy(xpath = "//div[3]/button")
-    WebElement loginButton;
-    @FindBy(xpath = "//*[@class='js-auth-signin b-navbar__exit h-ml-10']")
-    WebElement goToLoginButton;
+    @FindBy(id = "l-auth-login") WebElement loginUsernameField;
+    @FindBy(id = "l-auth-pass") WebElement loginPasswordField;
+    @FindBy(xpath = "//div[3]/button") WebElement loginButton;
+    @FindBy(xpath = "//span[@class='js-auth-signin b-navbar__exit h-ml-10']") WebElement goToLoginButton;
 
     public LoginPage(WebDriver driver) {
 
         super(driver);
-        this.PAGE_URL = "dev.remonline.ru";
+        this.PAGE_URL = "http://dev.remonline.ru";
         //this.PAGE_TITLE = "Login";
         //This initElements method will create all WebElements
 
@@ -35,7 +31,7 @@ public class LoginPage extends Page {
     }
 
     public void openLoginPage() {
-        driver.get("dev.remonline.ru");
+        driver.get(PAGE_URL);
         clickElement(goToLoginButton);
     }
 
@@ -43,18 +39,22 @@ public class LoginPage extends Page {
         loginUsernameField.sendKeys(userName);
         loginPasswordField.sendKeys(pass);
     }
+    public void fillLoginfields (String userName, String pass) {
+        setElementText(loginUsernameField,userName);
+        setElementText(loginPasswordField,pass);
+    }
 
     public void login() throws Exception {
 
         waitUntilElementIsLoaded(loginButton);
-        fillTheFields("Mary", "123456");
+        fillLoginfields("Mary", "123456");
         clickToLogin();
     }
 
     public void loginWithoutPass() throws Exception {
         openLoginPage();
         waitUntilElementIsLoaded(loginButton);
-        fillTheFields("Mary", "");
+        fillLoginfields("Mary", "");
         clickToLogin();
     }
 

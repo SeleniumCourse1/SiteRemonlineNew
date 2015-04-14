@@ -57,8 +57,8 @@ public class LoginTest {
 
     }
 
-
-    public void TestLoginInsuccess() {
+    @Test
+    public void TestLoginUnsuccess() {
         try {
             loginPage.loginWithoutPass();
             Assert.assertTrue(loginPage.isNotLoggedIn());

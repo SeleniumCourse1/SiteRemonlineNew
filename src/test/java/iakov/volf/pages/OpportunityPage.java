@@ -6,6 +6,8 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import static org.testng.AssertJUnit.assertEquals;
+
 /**
  * Created by Iakov Volf on 2/19/2015.
  */
@@ -44,7 +46,9 @@ public class OpportunityPage extends Page {
          waitForElement(wait, FIND_TEXT_LOK);
         
     }
-    
+    public void assertOpportunity() {
+        assertEquals("Возможности", findText.getText());
+    }
 }
 
 

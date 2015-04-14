@@ -5,47 +5,46 @@ package iakov.volf;
  */
 
 
-import org.openqa.selenium.Alert;
-import org.openqa.selenium.By;
+import iakov.volf.pages.HeaderPage;
+import iakov.volf.pages.OpportunityPage;
+import iakov.volf.pages.RegisterFirstPage;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-import static org.testng.AssertJUnit.assertEquals;
-import static org.testng.AssertJUnit.fail;
+import java.util.concurrent.TimeUnit;
 
-public class OpportunityTest extends TestNgTestBase {
+public class OpportunityTest {
     private boolean acceptNextAlert = true;
     private StringBuffer verificationErrors = new StringBuffer();
+    public WebDriver driver;
+    public WebDriverWait wait;
+    RegisterFirstPage registerFirstPage;
+    HeaderPage headerPage;
+    OpportunityPage opportunityPage;
+
+    @BeforeClass(alwaysRun = true)
+    public void setup() {
+        driver = new FirefoxDriver();
+        //  wait = new WebDriverWait(driver, 5);
+        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+        driver.get("http://dev.remonline.ru/");
+        headerPage = PageFactory.initElements(driver, HeaderPage.class);
+        registerFirstPage = PageFactory.initElements(driver, RegisterFirstPage.class);
+    }
+
 
     @Test
     public void testOpportunitiesRemOnline() throws Exception {
-        driver.get(baseUrl + "/");
-        driver.findElement(By.xpath("//a[contains(text(),'Возможности')]")).click();
-        for (int second = 0;; second++) {
-            if (second >= 60) fail("timeout");
-            try { if (isElementPresent(By.xpath("//*[@class='b-feature__title h-ta-c']"))) break; } catch (Exception e) {}
-            Thread.sleep(1000);
-        }
+       headerPage.openOportunityPage();
 
-        try {
-            assertEquals("Возможности", driver.findElement(By.xpath("//*[@class='b-feature__title h-ta-c']")).getText());
-        } catch (Error e) {
-            verificationErrors.append(e.toString());
-        }
     }
 
 
-    private String closeAlertAndGetItsText() {
-        try {
-            Alert alert = driver.switchTo().alert();
-            String alertText = alert.getText();
-            if (acceptNextAlert) {
-                alert.accept();
-            } else {
-                alert.dismiss();
-            }
-            return alertText;
-        } finally {
-            acceptNextAlert = true;
-        }
-    }
+
+
+
 }

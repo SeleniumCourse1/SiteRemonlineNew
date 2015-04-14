@@ -12,11 +12,11 @@ public class HeaderPage extends Page {
 
 
     @FindBy(xpath = "//*[@class='b-navbar__logo pull-left']")
-    WebElement homePageLink;
+    WebElement goToHomePage;
     @FindBy(xpath = "//*[@class='b-navbar__item'][@href='/pricing']")
-    WebElement pricingLink;
+    WebElement goToPriceButton;
     @FindBy(xpath = "//*[@class='b-navbar__item'][@href='/features']")
-    WebElement opportunityLink;
+    WebElement goToOpportunity;
     @FindBy(xpath = "//*[@class='b-navbar__item'][@href='/blog']")
     WebElement blogLink;
     @FindBy(xpath = "//*[@class='js-auth-signin b-navbar__exit h-ml-10']")
@@ -36,18 +36,36 @@ public class HeaderPage extends Page {
     }
 
     public void openLoginPage() {
-        loadPage();
+       // loadPage();
         clickElement(goToLoginButton);
         LoginPage loginPage;
         loginPage = PageFactory.initElements(driver, LoginPage.class);
     }
 
     public void openRegistrationFirstPage() {
-        loadPage();
+        //loadPage();
         clickElement(goToRegistrationButton);
         RegisterFirstPage registerFirstPage;
         registerFirstPage = PageFactory.initElements(driver, RegisterFirstPage.class);
     }
 
+    public void openPricePage() {
+        //loadPage();
+        clickElement(goToPriceButton);
+        PricePage pricePage;
+        pricePage = PageFactory.initElements(driver, PricePage.class);
+    }
 
+    public void openHomePage(){
+        clickElement(goToHomePage);
+        HomePage homePage;
+        homePage = PageFactory.initElements(driver, HomePage.class);
+    }
+
+    public void openOportunityPage() {
+        // loadPage();
+        clickElement(goToOpportunity);
+        OpportunityPage opportunityPage;
+        opportunityPage = PageFactory.initElements(driver, OpportunityPage.class);
+    }
 }

@@ -8,11 +8,6 @@
 
   <dependencies>
     <dependency>
-      <groupId>org.seleniumhq.selenium</groupId>
-      <artifactId>selenium-java</artifactId>
-      <version>2.45.0</version>
-    </dependency>
-    <dependency>
       <groupId>org.testng</groupId>
       <artifactId>testng</artifactId>
       <version>6.8.21</version>
@@ -22,6 +17,12 @@
       <artifactId>webdriver-factory</artifactId>
       <version>1.1.45</version>
     </dependency>
+      <dependency>
+          <groupId>org.seleniumhq.selenium</groupId>
+          <artifactId>selenium-java</artifactId>
+          <version>2.45.0</version>
+      </dependency>
+
   </dependencies>
   <build>
     <resources>
@@ -116,11 +117,10 @@
       </properties>
     </profile>
     <!-- environments -->
-
     <profile>
       <id>localhost</id>
       <properties>
-        <site.url>http://localhost/</site.url>
+        <site.url>http://dev.remonline.ru</site.url>
       </properties>
       <activation>
         <activeByDefault>true</activeByDefault>
