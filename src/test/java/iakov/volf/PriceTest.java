@@ -37,13 +37,23 @@ public class PriceTest {
     @Test
     public void TestPricePageElements() {
         try {
-            pricePage.testPrice();
+            pricePage.clickToPrice();
+
+            pricePage.selectCurrencyUAH();
+            pricePage.verifyText_grn();
+            pricePage.selectCurrencyRUB();
+            pricePage.verifyText_rub();
+            pricePage.confirmFreeTrialButton();
             registerFirstPage.onRegisterPage();
+
 
 
         } catch (Exception e) {
             e.printStackTrace();
         }
+
+
+
     }
 
 

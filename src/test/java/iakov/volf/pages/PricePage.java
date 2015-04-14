@@ -30,14 +30,13 @@ public class PricePage extends Page {
     }
 
 // Elements on the page
-    public void testPrice() throws Exception {
-        clickToPrice();
-        selectCurrencyUAH();
+    public void verifyText_grn(){
         verifyText("грн", displayedCurrencyUAH);
-        selectCurrencyRUB();
+
+    }
+
+    public void verifyText_rub() {
         verifyText("руб", displayedCurrencyRUB);
-        confirmFreeTrialButton();
-        
     }
     
     

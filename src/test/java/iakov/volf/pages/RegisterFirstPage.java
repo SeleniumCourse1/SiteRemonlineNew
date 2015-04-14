@@ -34,11 +34,7 @@ public class RegisterFirstPage extends Page {
         PageFactory.initElements(driver, this);
     }
     
-    public void registerFirstPage() throws Exception {
-        clickOnRegisterButton();
-        fillFirstRegisterForm("wolf1212@gmail.com", "Mary", "123456");
-        confirmFirstRegistrationFormButton();
-    }
+
       
     public void clickOnRegisterButton() throws InterruptedException {
         driver.findElement(By.xpath("//li[4]//span[@class='js-auth-signup b-navbar__entrance h-ml-15']")).click();
