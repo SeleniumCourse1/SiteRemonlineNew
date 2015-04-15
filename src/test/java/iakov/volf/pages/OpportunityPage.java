@@ -19,7 +19,7 @@ public class OpportunityPage extends Page {
     public WebDriverWait wait;
 
     @FindBy(xpath = FIND_TEXT_LOK)
-    WebElement findText;
+    WebElement opportunityText;
 
     @FindBy(xpath = "//*[@class='b-navbar__item b-navbar__item_state_active']")
     WebElement LinkOpportunity;
@@ -36,9 +36,9 @@ public class OpportunityPage extends Page {
 
     }
 
-    public void isOnOpportunityPage () {
+    public boolean isOnOpportunityPage () {
         
-        exists(findText);
+      return exists(opportunityText);
         
     }
 
@@ -47,7 +47,7 @@ public class OpportunityPage extends Page {
         
     }
     public void assertOpportunity() {
-        assertEquals("Возможности", findText.getText());
+        assertEquals("Возможности", opportunityText.getText());
     }
 }
 

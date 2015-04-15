@@ -15,7 +15,7 @@ public class HeaderPage extends Page {
     WebElement goToHomePage;
     @FindBy(xpath = "//*[@class='b-navbar__item'][@href='/pricing']")
     WebElement goToPriceButton;
-    @FindBy(xpath = "//*[@class='b-navbar__item'][@href='/features']")
+    @FindBy(xpath = "//*[@class='b-navbar__item b-navbar__item_state_active'][@href='/features']")
     WebElement goToOpportunity;
     @FindBy(xpath = "//*[@class='b-navbar__item'][@href='/blog']")
     WebElement blogLink;
@@ -63,7 +63,7 @@ public class HeaderPage extends Page {
     }
 
     public void openOportunityPage() {
-        // loadPage();
+        loadPage();
         clickElement(goToOpportunity);
         OpportunityPage opportunityPage;
         opportunityPage = PageFactory.initElements(driver, OpportunityPage.class);
