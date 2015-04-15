@@ -39,7 +39,7 @@ public class RegisterFirstPage extends Page {
     public void clickOnRegisterButton() throws InterruptedException {
         driver.findElement(By.xpath("//li[4]//span[@class='js-auth-signup b-navbar__entrance h-ml-15']")).click();
     }
-    public void onRegisterPage(){
+    public void onRegisterFirstPage(){
         verifyText("Регистрация компании", firstRegPageHeader);
         }
 

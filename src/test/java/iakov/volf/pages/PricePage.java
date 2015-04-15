@@ -29,7 +29,7 @@ public class PricePage extends Page {
         PageFactory.initElements(driver, this);
     }
 
-// Elements on the page
+// tests for this page
     public void verifyText_grn(){
         verifyText("грн", displayedCurrencyUAH);
 
@@ -42,9 +42,9 @@ public class PricePage extends Page {
     
     //__________________________________________________________________________________________________________
 
-    public void clickToPrice() {
-        driver.findElement(By.xpath("//li[2]//a[@class='b-navbar__item']")).click();
-    }
+//    public void clickToPrice() {
+//        driver.findElement(By.xpath("//li[2]//a[@class='b-navbar__item']")).click();
+//    }
     public void selectCurrencyRUB() {
         driver.findElement(By.xpath("//li[@data-currency=\"RUB\"]")).click();
     }
@@ -54,7 +54,7 @@ public class PricePage extends Page {
     public void confirmFreeTrialButton() {driver.findElement(By.xpath("//button[@class='b-button b-button_type_cta b-button_color_blue js-auth-signup']")).click();
     }
 
-    WebDriverWait wait = new WebDriverWait(driver, 5); // wait for a maximum of 5 seconds
+//    WebDriverWait wait = new WebDriverWait(driver, 5); // wait for a maximum of 5 seconds
 //        wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("div.b-modal > h2.h-ta-c")));
 //
 //        try {

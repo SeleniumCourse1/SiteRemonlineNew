@@ -3,6 +3,7 @@ package iakov.volf;
 
 import iakov.volf.pages.HeaderPage;
 import iakov.volf.pages.RegisterFirstPage;
+import iakov.volf.pages.RegisterSecondPage;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.support.PageFactory;
@@ -24,22 +25,35 @@ public class RegisterTest extends TestNgTestBase {
     protected boolean acceptNextAlert = true;
     HeaderPage headerPage;
     RegisterFirstPage registerFirstPage;
-   //RegisterSecondPage registerSecondPage
+    RegisterSecondPage registerSecondPage;
 
     @BeforeClass(alwaysRun = true)
     public void setup() {
         wait = new WebDriverWait(driver, 5);
         driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
         headerPage = PageFactory.initElements(driver, HeaderPage.class);
-        headerPage.openRegistrationFirstPage();
-        //registerSecondPage = PageFactory.initElements(driver, RegisterSecondPage.class);
+        registerFirstPage = PageFactory.initElements(driver, RegisterFirstPage.class);
+        registerSecondPage = PageFactory.initElements(driver, RegisterSecondPage.class);
+
+       // redirected to page???
        
     }
     @Test
-    public void RegisterFirstFormTest() throws Exception {
+    public void RegisterSuccessfulTest() throws Exception {
         try {
-            registerFirstPage.onRegisterPage();
-           // registerSecondPage.onRegisterSecondPage();
+
+            //must clean cookey!!!
+            headerPage.loadPage();
+            headerPage.openRegistrationFirstPage();
+
+            registerFirstPage.onRegisterFirstPage();
+            registerFirstPage.fillFirstRegisterForm("email.com", "Login", "123456");
+            registerFirstPage.confirmFirstRegistrationFormButton();
+            registerSecondPage.onRegisterSecondPage();
+            registerSecondPage.fillSecondRegisterForm("Mary", "Popinse", "SelfEmployed", "London");
+            registerSecondPage.clickOnRegisterButton();
+
+            //add next page
 
 
         } catch (Exception e) {
@@ -63,56 +77,17 @@ public class RegisterTest extends TestNgTestBase {
 //        }
    
     
-    fillSecondRegisterForm("Mary", "Popinse", "SelfEmployed", "London");
+
         //todo add clickbutton method
     }
 
-    private void fillSecondRegisterForm(String firstName, String lastName, String companyName, String city) throws InterruptedException {
-        //firstName
-        driver.findElement(By.id("l-auth-name")).click();
-        driver.findElement(By.id("l-auth-name")).clear();
-        driver.findElement(By.id("l-auth-name")).sendKeys(firstName);
-        //lastName
-        driver.findElement(By.id("l-auth-lname")).click();
-        driver.findElement(By.id("l-auth-lname")).clear();
-        driver.findElement(By.id("l-auth-lname")).sendKeys(lastName);
-        //companyName
-        driver.findElement(By.id("l-auth-company")).click();
-        driver.findElement(By.id("l-auth-company")).clear();
-        driver.findElement(By.id("l-auth-company")).sendKeys(companyName);
-        //selectCountry
-        driver.findElement(By.id("js-auth-country")).click();
-        //driver.findElement(By.xpath("//li[@class='clearfix b-dropdown__item'][index]"));
-        selectCountryByIndex(3);
-        
-        
-        //city
-        driver.findElement(By.id("l-auth-city")).click();
-        driver.findElement(By.id("l-auth-city")).clear();
-        driver.findElement(By.id("l-auth-city")).sendKeys(city);
-        
-        //telephone
-        driver.findElement(By.id("l-auth-phone")).click();
-    }
-
-    private void selectCountryByIndex(int index) {
-        driver.findElement(By.xpath("//li[@class='clearfix b-dropdown__item']["+(index + 1) + " ]")).click();
-
-        }
 
 
 
-    private void clickOnRegisterButton() throws InterruptedException {
-        driver.findElement(By.xpath("//li[4]//span[@class='js-auth-signup b-navbar__entrance h-ml-15']")).click();
-             for (int second = 0; ; second++) {
-            if (second >= 60) fail("timeout");
-            try {
-                if (isElementPresent(By.xpath("//body/div[4]"))) break;
-            } catch (Exception e) {
-            }
-            Thread.sleep(1000);
-        }
-    }
+
+
+
+
    
     
     

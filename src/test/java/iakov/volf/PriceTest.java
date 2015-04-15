@@ -47,7 +47,7 @@ public class PriceTest {
             pricePage.selectCurrencyRUB();
             pricePage.verifyText_rub();
             pricePage.confirmFreeTrialButton();
-            registerFirstPage.onRegisterPage();
+            registerFirstPage.onRegisterFirstPage();
         } catch (Exception e) {
             e.printStackTrace();
         }

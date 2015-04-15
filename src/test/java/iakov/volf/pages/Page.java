@@ -93,4 +93,13 @@ public abstract class Page {
     public void waitForElement(WebDriverWait wait, String element) {
         wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(element)));
     }
+
+    protected boolean isElementPresent(By by) {
+        try {
+            driver.findElement(by);
+            return true;
+        } catch (org.openqa.selenium.NoSuchElementException e) {
+            return false;
+        }
+    }
 }
