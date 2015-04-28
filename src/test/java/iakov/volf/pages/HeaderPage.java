@@ -18,7 +18,7 @@ public class HeaderPage extends Page {
     @FindBy(xpath = "//*[@class='b-navbar__item b-navbar__item_state_active'][@href='/features']")
     WebElement goToOpportunity;
     @FindBy(xpath = "//*[@class='b-navbar__item'][@href='/blog']")
-    WebElement blogLink;
+    WebElement goToBlog;
     @FindBy(xpath = "//*[@class='js-auth-signin b-navbar__exit h-ml-10']")
     WebElement goToLoginButton;
     @FindBy(xpath = "//li[4]//span[@class='js-auth-signup b-navbar__entrance h-ml-15']")
@@ -41,7 +41,12 @@ public class HeaderPage extends Page {
         LoginPage loginPage;
         loginPage = PageFactory.initElements(driver, LoginPage.class);
     }
-
+    public void openBlogPage() {
+        // loadPage();
+        clickElement(goToBlog);
+        BlogPage blogPage;
+        blogPage = PageFactory.initElements(driver, BlogPage.class);
+    }
     public void openRegistrationFirstPage() {
         //loadPage();
         clickElement(goToRegistrationButton);

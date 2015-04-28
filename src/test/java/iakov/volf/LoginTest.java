@@ -34,9 +34,9 @@ public class LoginTest {
         wait = new WebDriverWait(driver, 5);
         driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
         headerPage = PageFactory.initElements(driver, HeaderPage.class);
-        headerPage.openLoginPage();
-        ordersPage = PageFactory.initElements(driver, OrdersPage.class);
-    }
+    headerPage.openLoginPage();
+    ordersPage = PageFactory.initElements(driver, OrdersPage.class);
+}
 
     @AfterClass(alwaysRun = true)
     public void teardown() {
