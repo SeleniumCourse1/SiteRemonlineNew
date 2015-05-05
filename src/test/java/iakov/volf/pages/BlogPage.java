@@ -4,7 +4,6 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 import static org.testng.AssertJUnit.assertEquals;
 
@@ -31,13 +30,13 @@ public class BlogPage extends Page {
 
     }
 
-    public boolean  isOnBlogPage () {
-        
+    public boolean isOnBlogPage() {
+        assertContinueReadingText();
        return exists(linkContinueReed);
         
     }
 
-    public void assertOpportunity() {
+    public void assertContinueReadingText() {
         assertEquals("Продолжить чтение →", linkContinueReed.getText());
     }
 }
