@@ -5,7 +5,6 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.io.IOException;
 
@@ -37,6 +36,11 @@ public class OrdersPage extends Page {
         return super.exists(element);
     }
 
+
+    public boolean isOnOrdersPage() {
+        return exists(tableHeader);
+    }
+
     public boolean isLoggedIn(WebElement loginButton) {
         return super.exists(loginButton);
     }
@@ -45,11 +49,8 @@ public class OrdersPage extends Page {
         return driver.findElements(By.xpath("//span[@class='js-auth-signin b-navbar__exit h-ml-10']")).size() > 0;
     }
 
-    public void waitUntilElementIsLoaded(WebElement element) throws IOException, InterruptedException {
-        super.waitUntilElementIsLoaded(element);
-    }
 
-    public void waitForElement(WebDriverWait wait, String element) {
-        super.waitForElement(wait, element);
+    public void waitForOrdersPageLoaded() throws IOException, InterruptedException {
+        waitUntilElementIsLoaded(tableHeader);
     }
 }

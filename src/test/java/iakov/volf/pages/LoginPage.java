@@ -30,18 +30,10 @@ public class LoginPage extends Page {
 
     }
 
-    public void openLoginPage() {
-        driver.get(PAGE_URL);
-        clickElement(goToLoginButton);
-    }
 
-    public void fillTheFields(String userName, String pass) {
-        loginUsernameField.sendKeys(userName);
-        loginPasswordField.sendKeys(pass);
-    }
     public void fillLoginfields (String userName, String pass) {
-        setElementText(loginUsernameField,userName);
-        setElementText(loginPasswordField,pass);
+        setElementText(loginUsernameField, userName);
+        setElementText(loginPasswordField, pass);
     }
 
     public void login() throws Exception {
@@ -52,7 +44,6 @@ public class LoginPage extends Page {
     }
 
     public void loginWithoutPass() throws Exception {
-        openLoginPage();
         waitUntilElementIsLoaded(loginButton);
         fillLoginfields("Mary", "");
         clickToLogin();
@@ -62,6 +53,9 @@ public class LoginPage extends Page {
         clickElement(loginButton);
     }
 
+    public boolean isOnLoginPage() {
+        return exists(loginButton);
+    }
 
     public boolean exists(WebElement element) {
         return super.exists(element);

@@ -7,8 +7,6 @@ package iakov.volf;
 
 import iakov.volf.pages.BlogPage;
 import iakov.volf.pages.HeaderPage;
-import iakov.volf.pages.OpportunityPage;
-import iakov.volf.pages.RegisterFirstPage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.PageFactory;
@@ -21,11 +19,9 @@ import org.testng.annotations.Test;
 import java.util.concurrent.TimeUnit;
 
 public class BlogTest {
-    private boolean acceptNextAlert = true;
-    private StringBuffer verificationErrors = new StringBuffer();
+
     public WebDriver driver;
     public WebDriverWait wait;
-    RegisterFirstPage registerFirstPage;
     HeaderPage headerPage;
     BlogPage blogPage;
 
@@ -36,14 +32,14 @@ public class BlogTest {
         driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
         //driver.get("http://dev.remonline.ru/");
         headerPage = PageFactory.initElements(driver, HeaderPage.class);
-        registerFirstPage = PageFactory.initElements(driver, RegisterFirstPage.class);
         blogPage = PageFactory.initElements(driver, BlogPage.class);
     }
 
 
     @Test
     public void testBlogRemonline() throws Exception {
-        blogPage.loadPage();
+        headerPage.loadPage();
+        headerPage.openBlogPage();
         Assert.assertTrue (blogPage.isOnBlogPage());
     }
 

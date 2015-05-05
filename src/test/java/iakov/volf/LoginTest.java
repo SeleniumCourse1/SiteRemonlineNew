@@ -20,6 +20,8 @@ import org.testng.annotations.Test;
 
 import java.util.concurrent.TimeUnit;
 
+import static org.testng.AssertJUnit.assertTrue;
+
 public class LoginTest {
     public WebDriver driver;
     public WebDriverWait wait;
@@ -34,7 +36,7 @@ public class LoginTest {
         wait = new WebDriverWait(driver, 5);
         driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
         headerPage = PageFactory.initElements(driver, HeaderPage.class);
-    headerPage.openLoginPage();
+
     ordersPage = PageFactory.initElements(driver, OrdersPage.class);
 }
 
@@ -46,8 +48,13 @@ public class LoginTest {
     @Test
     public void TestLoginSuccess() {
         try {
-            loginPage.login();
-            ordersPage.onOrdersPage();
+            headerPage.loadPage();
+            headerPage.openLoginPage();
+            assertTrue(loginPage.isOnLoginPage());
+            loginPage.fillLoginfields("Mary", "123456");
+            loginPage.clickToLogin();
+            ordersPage.waitForOrdersPageLoaded();
+            assertTrue(ordersPage.isOnOrdersPage());
 
 
         } catch (Exception e) {

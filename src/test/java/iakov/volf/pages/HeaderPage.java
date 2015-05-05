@@ -17,9 +17,9 @@ public class HeaderPage extends Page {
     WebElement goToPriceButton;
     @FindBy(xpath = "//*[@class='b-navbar__item b-navbar__item_state_active'][@href='/features']")
     WebElement goToOpportunity;
-    @FindBy(xpath = "//*[@class='b-navbar__item'][@href='/blog']")
+    @FindBy(linkText = "Блог")
     WebElement goToBlog;
-    @FindBy(xpath = "//*[@class='js-auth-signin b-navbar__exit h-ml-10']")
+    @FindBy(linkText = "Вход")
     WebElement goToLoginButton;
     @FindBy(xpath = "//li[4]//span[@class='js-auth-signup b-navbar__entrance h-ml-15']")
     WebElement goToRegistrationButton;
@@ -27,7 +27,7 @@ public class HeaderPage extends Page {
     public HeaderPage(WebDriver driver) {
 
         super(driver);
-        this.PAGE_URL = "dev.remonline.ru";
+        this.PAGE_URL = "http://dev.remonline.ru/";
         //this.PAGE_TITLE = "Login";
         //This initElements method will create all WebElements
 
